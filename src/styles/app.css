@@ -38,6 +38,7 @@
   --color-link-hover: oklch(38% 0.2 50);
   --color-rule: oklch(90% 0.005 260);
   --color-grid: oklch(0% 0 0 / 0.05);
+  --color-grid-strong: oklch(0% 0 0 / 0.20);
   --color-selection-bg: oklch(80% 0.14 55);
   --color-selection-fg: oklch(15% 0.02 260);
   --color-focus: oklch(45% 0.18 55);
@@ -51,6 +52,7 @@
   --color-link-hover: oklch(92% 0.1 55);
   --color-rule: oklch(28% 0.012 260);
   --color-grid: oklch(100% 0 0 / 0.05);
+  --color-grid-strong: oklch(100% 0 0 / 0.20);
   --color-selection-bg: oklch(72% 0.16 55);
   --color-selection-fg: oklch(15% 0.02 260);
   --color-focus: oklch(82% 0.14 55);
@@ -64,6 +66,7 @@
   --color-link-hover: var(--color-link-hover);
   --color-rule: var(--color-rule);
   --color-grid: var(--color-grid);
+  --color-grid-strong: var(--color-grid-strong);
   --color-focus: var(--color-focus);
 }
 
@@ -80,6 +83,33 @@ html {
   transition:
     background-color 280ms ease,
     color 280ms ease;
+}
+
+#cursor-spotlight {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0;
+  background-image: radial-gradient(circle, var(--color-grid-strong) 1px, transparent 1px);
+  background-size: 24px 24px;
+  background-position: 0 0;
+  transition: opacity 240ms ease;
+  will-change: mask-image;
+  -webkit-mask-image: radial-gradient(
+    circle 150px at var(--mx, 50%) var(--my, 50%),
+    black 0%,
+    rgba(0, 0, 0, 0.6) 60%,
+    transparent 100%
+  );
+  mask-image: radial-gradient(
+    circle 150px at var(--mx, 50%) var(--my, 50%),
+    black 0%,
+    rgba(0, 0, 0, 0.6) 60%,
+    transparent 100%
+  );
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
 }
 
 ::selection {
@@ -152,5 +182,11 @@ html {
     animation: none;
     opacity: 1;
     transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce), (hover: none), (pointer: coarse) {
+  #cursor-spotlight {
+    display: none;
   }
 }

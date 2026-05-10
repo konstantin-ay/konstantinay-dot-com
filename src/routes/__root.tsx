@@ -1,6 +1,7 @@
 /// <reference types="vite/client" />
 import { HeadContent, Outlet, Scripts, createRootRoute } from '@tanstack/react-router'
 import type { ReactNode } from 'react'
+import { CursorSpotlight } from '../components/CursorSpotlight'
 import { content } from '../lib/content'
 import { buildHead } from '../lib/seo'
 import { NO_FLASH_THEME_SCRIPT } from '../hooks/useTheme'
@@ -41,6 +42,7 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
       </head>
       <body>
         {children}
+        <CursorSpotlight />
         <Scripts />
       </body>
     </html>

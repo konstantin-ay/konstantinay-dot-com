@@ -1,5 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { Hero } from '../components/Hero'
+import { LocalTime } from '../components/LocalTime'
 import { ThemeToggle } from '../components/ThemeToggle'
 
 export const Route = createFileRoute('/')({
@@ -9,7 +10,8 @@ export const Route = createFileRoute('/')({
 function LandingPage() {
   return (
     <main className='relative flex min-h-dvh w-full flex-col items-start justify-end overflow-hidden p-6 md:p-12'>
-      <header className='absolute top-0 right-0 z-20 p-6 md:p-10'>
+      <header className='absolute top-0 right-0 z-20 flex items-center gap-3 p-6 md:p-10'>
+        <LocalTime />
         <ThemeToggle />
       </header>
 
