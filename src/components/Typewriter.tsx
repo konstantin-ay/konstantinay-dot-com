@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { type CSSProperties, useEffect, useRef, useState } from 'react'
 
 interface TypewriterProps {
   prefix: string
@@ -137,11 +137,26 @@ export function Typewriter({
       <span aria-hidden='true' className='inline'>
         {typedPrefix}
         <span className='inline'>{suffix}</span>
-        <span
-          className='inline-block w-[0.06em] h-[0.95em] translate-y-[0.12em] bg-[var(--color-muted)] ml-[0.06em] align-baseline caret-blink'
-        />
+        <span className='inline-block w-[0.06em] h-[0.95em] translate-y-[0.12em] bg-[var(--color-muted)] ml-[0.06em] align-baseline caret-blink' />
       </span>
-      <span className='sr-only'>{fullPhrase}</span>
+      {/* Inline visually-hidden styles guard against a flash of the full phrase
+       * before the external stylesheet has applied (e.g. Vite dev serves CSS
+       * as a JS module, so .sr-only isn't active until JS evaluates). */}
+      <span className='sr-only' style={visuallyHidden}>
+        {fullPhrase}
+      </span>
     </span>
   )
+}
+
+const visuallyHidden: CSSProperties = {
+  position: 'absolute',
+  width: '1px',
+  height: '1px',
+  padding: 0,
+  margin: '-1px',
+  overflow: 'hidden',
+  clipPath: 'inset(50%)',
+  whiteSpace: 'nowrap',
+  borderWidth: 0,
 }
