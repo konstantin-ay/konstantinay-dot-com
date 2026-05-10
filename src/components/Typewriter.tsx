@@ -9,6 +9,7 @@ interface TypewriterProps {
   pauseAfterTypeMs?: number
   pauseAfterEraseMs?: number
   shuffle?: boolean
+  maxAttempts?: number
 }
 
 function shuffled<T>(items: readonly T[]): T[] {
@@ -31,8 +32,10 @@ export function Typewriter({
   pauseAfterTypeMs = 700,
   pauseAfterEraseMs = 220,
   shuffle = true,
+  maxAttempts = 3,
 }: TypewriterProps) {
   const fullPhrase = prefix + final
+  const [typedPrefix, setTypedPrefix] = useState('')
   const [suffix, setSuffix] = useState('')
   const [reduced, setReduced] = useState(false)
   const cancelled = useRef(false)
@@ -50,13 +53,14 @@ export function Typewriter({
     cancelled.current = false
 
     if (reduced) {
+      setTypedPrefix(prefix)
       setSuffix(final)
       return () => {
         cancelled.current = true
       }
     }
 
-    const sequence = shuffle ? shuffled(attempts) : [...attempts]
+    const sequence = (shuffle ? shuffled(attempts) : [...attempts]).slice(0, maxAttempts)
     sequence.push(final)
 
     const sleep = (ms: number) =>
@@ -72,6 +76,15 @@ export function Typewriter({
     let aborted = false
 
     async function run() {
+      // Phase 1 — type the prefix once. This is the intro typing of "I'm "
+      // before the misspell-and-retry loop kicks in on the name.
+      for (let i = 1; i <= prefix.length; i++) {
+        if (cancelled.current) return
+        setTypedPrefix(prefix.slice(0, i))
+        await sleep(typeMs)
+      }
+
+      // Phase 2 — misspell-and-retry loop on the name (suffix only).
       for (let s = 0; s < sequence.length; s++) {
         if (cancelled.current) return
         const word = sequence[s] as string
@@ -106,12 +119,23 @@ export function Typewriter({
       cancelled.current = true
       void aborted
     }
-  }, [reduced, attempts, final, typeMs, eraseMs, pauseAfterTypeMs, pauseAfterEraseMs, shuffle])
+  }, [
+    reduced,
+    prefix,
+    attempts,
+    final,
+    typeMs,
+    eraseMs,
+    pauseAfterTypeMs,
+    pauseAfterEraseMs,
+    shuffle,
+    maxAttempts,
+  ])
 
   return (
     <span className='inline'>
       <span aria-hidden='true' className='inline'>
-        {prefix}
+        {typedPrefix}
         <span className='inline'>{suffix}</span>
         <span
           className='inline-block w-[0.06em] h-[0.95em] translate-y-[0.12em] bg-[var(--color-muted)] ml-[0.06em] align-baseline caret-blink'

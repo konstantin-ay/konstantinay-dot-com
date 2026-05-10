@@ -21,9 +21,9 @@ export const content = {
     separators: { default: ', ', beforeLast: ' or ', terminator: '.' },
   },
   typewriter: {
-    prefix: "I'm Konst",
-    attempts: ['ana', 'antni', 'nat', 'annnnn', 'antttni', 'konny?'],
-    final: 'antin :)',
+    prefix: "I'm ",
+    attempts: ['Konny?', 'Konstantni', 'Konstantine', 'Kostantin', 'Konntantin'],
+    final: 'Konstantin :)',
     shuffle: true,
   },
   seo: {
