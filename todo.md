@@ -1,0 +1,3 @@
+- Tell the agent to make it possible to change the name of me, but as soon as the user does change the name, it should become angry and say something idk.
+- Maybe: The website should be aligned with the Swedish sun position??
+- Maybe: Add a small padding to the entire website and make it look like it is a card with rounded corners

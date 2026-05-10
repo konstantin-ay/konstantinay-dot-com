@@ -38,6 +38,7 @@ export function CursorSpotlight() {
 
     const onLeave = () => {
       el.style.opacity = '0'
+      firstMove = true
     }
 
     window.addEventListener('pointermove', onMove)

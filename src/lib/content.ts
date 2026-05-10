@@ -4,7 +4,7 @@ export const content = {
   location: 'Gothenburg, Sweden',
   bio: 'Fullstack Developer based in Gothenburg, Sweden.',
   email: 'hello@konstantinay.com',
-  cv: { path: '/cv.pdf', downloadAs: 'top-candidate.pdf' },
+  cv: { path: '/konstantin-ay-cv.pdf', downloadAs: 'konstantin-ay-cv.pdf' },
   links: {
     linkedin: 'https://www.linkedin.com/in/konstantin-ay/',
     github: 'https://github.com/konstantin-ay',

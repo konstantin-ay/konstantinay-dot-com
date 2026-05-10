@@ -18,7 +18,7 @@ function snapshot(date: Date): Snapshot {
 }
 
 export function LocalTime() {
-  const [now, setNow] = useState<Snapshot | null>(null)
+  const [now, setNow] = useState<Snapshot>(() => snapshot(new Date()))
 
   useEffect(() => {
     let timeoutId: ReturnType<typeof setTimeout>
@@ -38,7 +38,7 @@ export function LocalTime() {
   return (
     <time
       title={LABEL}
-      dateTime={now?.machine}
+      dateTime={now.machine}
       className='inline-flex h-9 items-center gap-2 rounded-full border border-[var(--color-rule)] bg-[var(--color-bg)]/60 px-3 text-sm text-[var(--color-fg)] backdrop-blur'
     >
       <span className='text-[var(--color-muted)]'>Gothenburg</span>
@@ -46,7 +46,7 @@ export function LocalTime() {
         &middot;
       </span>
       <span className='tabular-nums' suppressHydrationWarning>
-        {now?.display ?? '  :  '}
+        {now.display}
       </span>
     </time>
   )
