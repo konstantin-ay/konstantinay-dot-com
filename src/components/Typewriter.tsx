@@ -34,7 +34,6 @@ export function Typewriter({
 }: TypewriterProps) {
   const fullPhrase = prefix + final
   const [suffix, setSuffix] = useState('')
-  const [done, setDone] = useState(false)
   const [reduced, setReduced] = useState(false)
   const cancelled = useRef(false)
 
@@ -52,7 +51,6 @@ export function Typewriter({
 
     if (reduced) {
       setSuffix(final)
-      setDone(true)
       return () => {
         cancelled.current = true
       }
@@ -99,7 +97,6 @@ export function Typewriter({
         if (cancelled.current) return
         await sleep(pauseAfterEraseMs)
       }
-      if (!cancelled.current) setDone(true)
     }
 
     run()
@@ -117,7 +114,7 @@ export function Typewriter({
         {prefix}
         <span className='inline'>{suffix}</span>
         <span
-          className={`inline-block w-[0.06em] h-[0.95em] translate-y-[0.12em] bg-current ml-[0.06em] align-baseline ${done ? 'caret-blink opacity-60' : 'opacity-90'}`}
+          className='inline-block w-[0.06em] h-[0.95em] translate-y-[0.12em] bg-[var(--color-muted)] ml-[0.06em] align-baseline caret-blink'
         />
       </span>
       <span className='sr-only'>{fullPhrase}</span>

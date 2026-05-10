@@ -1,8 +1,31 @@
 @import "tailwindcss";
-@import "@fontsource-variable/inter";
+
+@font-face {
+  font-family: "Eudoxus Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/EudoxusSans-Regular.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Eudoxus Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/fonts/EudoxusSans-Medium.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Eudoxus Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/EudoxusSans-Bold.woff2") format("woff2");
+}
 
 @theme {
-  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Eudoxus Sans", ui-sans-serif, system-ui, sans-serif;
 }
 
 :root {
@@ -11,26 +34,26 @@
   --color-bg: oklch(98% 0.002 240);
   --color-fg: oklch(18% 0.012 260);
   --color-muted: oklch(48% 0.012 260);
-  --color-link: oklch(45% 0.18 280);
-  --color-link-hover: oklch(38% 0.2 285);
+  --color-link: oklch(45% 0.18 55);
+  --color-link-hover: oklch(38% 0.2 50);
   --color-rule: oklch(90% 0.005 260);
   --color-grid: oklch(0% 0 0 / 0.05);
-  --color-selection-bg: oklch(80% 0.14 280);
+  --color-selection-bg: oklch(80% 0.14 55);
   --color-selection-fg: oklch(15% 0.02 260);
-  --color-focus: oklch(45% 0.18 280);
+  --color-focus: oklch(45% 0.18 55);
 }
 
 :root[data-theme="dark"] {
   --color-bg: oklch(13% 0.012 260);
   --color-fg: oklch(96% 0.005 240);
   --color-muted: oklch(70% 0.012 260);
-  --color-link: oklch(82% 0.14 280);
-  --color-link-hover: oklch(92% 0.1 280);
+  --color-link: oklch(82% 0.14 55);
+  --color-link-hover: oklch(92% 0.1 55);
   --color-rule: oklch(28% 0.012 260);
   --color-grid: oklch(100% 0 0 / 0.05);
-  --color-selection-bg: oklch(72% 0.16 280);
+  --color-selection-bg: oklch(72% 0.16 55);
   --color-selection-fg: oklch(15% 0.02 260);
-  --color-focus: oklch(82% 0.14 280);
+  --color-focus: oklch(82% 0.14 55);
 }
 
 @theme inline {
@@ -48,7 +71,6 @@ html {
   background: var(--color-bg);
   color: var(--color-fg);
   font-family: var(--font-sans);
-  font-feature-settings: "cv11", "ss01", "ss03";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
@@ -122,8 +144,9 @@ html {
     transition-duration: 0.01ms !important;
   }
   .caret-blink {
-    animation: none;
-    opacity: 1;
+    animation: caret-blink 1s steps(1) infinite !important;
+    animation-duration: 1s !important;
+    animation-iteration-count: infinite !important;
   }
   .fade-up {
     animation: none;

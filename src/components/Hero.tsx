@@ -5,7 +5,7 @@ import { Typewriter } from './Typewriter'
 export function Hero() {
   return (
     <div className='max-w-[min(900px,100%)]'>
-      <h1 className='fade-up fade-up-0 font-sans font-medium tracking-[-0.035em] leading-[0.95] text-[var(--color-fg)] text-[clamp(2.5rem,11vw,8rem)]'>
+      <h1 className='fade-up fade-up-0 font-sans font-bold tracking-[-0.035em] leading-[0.95] text-[var(--color-fg)] text-[clamp(1.75rem,8vw,6rem)] whitespace-nowrap'>
         <Typewriter
           prefix={content.typewriter.prefix}
           attempts={content.typewriter.attempts}
