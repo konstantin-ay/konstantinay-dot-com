@@ -1,0 +1,133 @@
+@import "tailwindcss";
+@import "@fontsource-variable/inter";
+
+@theme {
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+}
+
+:root {
+  color-scheme: light dark;
+
+  --color-bg: oklch(98% 0.002 240);
+  --color-fg: oklch(18% 0.012 260);
+  --color-muted: oklch(48% 0.012 260);
+  --color-link: oklch(45% 0.18 280);
+  --color-link-hover: oklch(38% 0.2 285);
+  --color-rule: oklch(90% 0.005 260);
+  --color-grid: oklch(0% 0 0 / 0.05);
+  --color-selection-bg: oklch(80% 0.14 280);
+  --color-selection-fg: oklch(15% 0.02 260);
+  --color-focus: oklch(45% 0.18 280);
+}
+
+:root[data-theme="dark"] {
+  --color-bg: oklch(13% 0.012 260);
+  --color-fg: oklch(96% 0.005 240);
+  --color-muted: oklch(70% 0.012 260);
+  --color-link: oklch(82% 0.14 280);
+  --color-link-hover: oklch(92% 0.1 280);
+  --color-rule: oklch(28% 0.012 260);
+  --color-grid: oklch(100% 0 0 / 0.05);
+  --color-selection-bg: oklch(72% 0.16 280);
+  --color-selection-fg: oklch(15% 0.02 260);
+  --color-focus: oklch(82% 0.14 280);
+}
+
+@theme inline {
+  --color-bg: var(--color-bg);
+  --color-fg: var(--color-fg);
+  --color-muted: var(--color-muted);
+  --color-link: var(--color-link);
+  --color-link-hover: var(--color-link-hover);
+  --color-rule: var(--color-rule);
+  --color-grid: var(--color-grid);
+  --color-focus: var(--color-focus);
+}
+
+html {
+  background: var(--color-bg);
+  color: var(--color-fg);
+  font-family: var(--font-sans);
+  font-feature-settings: "cv11", "ss01", "ss03";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  background-image: radial-gradient(circle, var(--color-grid) 1px, transparent 1px);
+  background-size: 24px 24px;
+  background-position: 0 0;
+  transition:
+    background-color 280ms ease,
+    color 280ms ease;
+}
+
+::selection {
+  background: var(--color-selection-bg);
+  color: var(--color-selection-fg);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+@keyframes caret-blink {
+  0%,
+  50% {
+    opacity: 1;
+  }
+  50.01%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.caret-blink {
+  animation: caret-blink 1s steps(1) infinite;
+}
+
+/*
+ * Entrance animations.
+ * The element's REST state is fully visible, so no-JS / pre-paint / crawler
+ * snapshots all show readable text. The keyframe runs once on load and only
+ * adds the "from invisible" intro — it never holds an invisible final state.
+ */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-up {
+  animation: fade-up 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+.fade-up-0 {
+  animation-delay: 50ms;
+}
+.fade-up-1 {
+  animation-delay: 130ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .caret-blink {
+    animation: none;
+    opacity: 1;
+  }
+  .fade-up {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}

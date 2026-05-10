@@ -1,0 +1,13 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'>
+  <style>
+    .bg { fill: #0c0d12; }
+    .fg { fill: #fafafa; }
+    @media (prefers-color-scheme: light) {
+      .bg { fill: #fafafa; }
+      .fg { fill: #0c0d12; }
+    }
+  </style>
+  <rect class='bg' width='64' height='64' rx='14' />
+  <text x='32' y='44' text-anchor='middle' font-family='Fraunces, Georgia, serif'
+        font-weight='600' font-size='42' class='fg' style='font-feature-settings:"opsz" 144;'>K</text>
+</svg>
