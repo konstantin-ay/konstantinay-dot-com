@@ -39,10 +39,10 @@ export function LocalTime() {
     <time
       title={LABEL}
       dateTime={now.machine}
-      className='inline-flex h-9 items-center gap-2 rounded-full border border-[var(--color-rule)] bg-[var(--color-bg)]/60 px-3 text-sm text-[var(--color-fg)] backdrop-blur'
+      className='inline-flex h-9 items-center gap-2 rounded-full border border-rule bg-bg/60 px-3 text-sm text-fg backdrop-blur'
     >
-      <span className='text-[var(--color-muted)]'>Gothenburg</span>
-      <span aria-hidden='true' className='text-[var(--color-rule)]'>
+      <span className='text-muted'>Gothenburg</span>
+      <span aria-hidden='true' className='text-rule'>
         &middot;
       </span>
       <span className='tabular-nums' suppressHydrationWarning>

@@ -26,7 +26,7 @@ export function ThemeToggle() {
       onClick={cycle}
       aria-label={LABELS[display]}
       title={LABELS[display]}
-      className='inline-flex h-9 w-9 items-center justify-center rounded-full border border-[var(--color-rule)] bg-[var(--color-bg)]/60 text-[var(--color-fg)] backdrop-blur transition-colors duration-200 hover:bg-[var(--color-rule)]/40 focus-visible:outline-2 focus-visible:outline-[var(--color-focus)]'
+      className='inline-flex h-9 w-9 items-center justify-center rounded-full border border-rule bg-bg/60 text-fg backdrop-blur transition-colors duration-200 hover:bg-rule/40 focus-visible:outline-2 focus-visible:outline-focus'
     >
       {display === 'system' && <Monitor className='h-4 w-4' aria-hidden='true' />}
       {display === 'light' && <Sun className='h-4 w-4' aria-hidden='true' />}

@@ -33,7 +33,7 @@ export function ContactInline() {
               href={url}
               {...(isCv ? { download: content.cv.downloadAs } : {})}
               {...(isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-              className='text-[var(--color-link)] underline decoration-[var(--color-rule)] decoration-1 underline-offset-4 transition-colors duration-150 hover:text-[var(--color-link-hover)] hover:decoration-current'
+              className='text-link underline decoration-rule decoration-1 underline-offset-4 transition-colors duration-150 hover:text-link-hover hover:decoration-current'
             >
               {part.label}
             </a>

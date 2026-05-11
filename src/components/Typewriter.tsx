@@ -137,7 +137,7 @@ export function Typewriter({
       <span aria-hidden='true' className='inline motion-reduce:hidden'>
         {typedPrefix}
         <span className='inline'>{suffix}</span>
-        <span className='inline-block w-[0.06em] h-[0.95em] translate-y-[0.12em] bg-[var(--color-muted)] ml-[0.06em] align-baseline caret-blink' />
+        <span className='inline-block w-[0.06em] h-[0.95em] translate-y-[0.12em] bg-muted ml-[0.06em] align-baseline caret-blink' />
       </span>
       {/* Static fallback — only visible under prefers-reduced-motion. Not
        * aria-hidden so screen readers pick it up directly when shown. */}
