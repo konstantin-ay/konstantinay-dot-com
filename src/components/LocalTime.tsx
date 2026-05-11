@@ -42,8 +42,8 @@ export function LocalTime() {
       className='inline-flex h-9 items-center gap-2 rounded-full border border-rule bg-bg/60 px-3 text-sm text-fg backdrop-blur'
     >
       <span className='text-muted'>Gothenburg</span>
-      <span aria-hidden='true' className='text-rule'>
-        &middot;
+      <span aria-hidden='true' className='text-lg leading-none text-muted'>
+        &bull;
       </span>
       <span className='tabular-nums' suppressHydrationWarning>
         {now.display}
