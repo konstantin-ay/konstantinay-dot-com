@@ -53,8 +53,6 @@ export function Typewriter({
     cancelled.current = false
 
     if (reduced) {
-      setTypedPrefix(prefix)
-      setSuffix(final)
       return () => {
         cancelled.current = true
       }
@@ -134,15 +132,22 @@ export function Typewriter({
 
   return (
     <span className='inline'>
-      <span aria-hidden='true' className='inline'>
+      {/* Animated version — hidden under prefers-reduced-motion via CSS, so the
+       * static span below takes over without waiting on JS / hydration. */}
+      <span aria-hidden='true' className='inline motion-reduce:hidden'>
         {typedPrefix}
         <span className='inline'>{suffix}</span>
         <span className='inline-block w-[0.06em] h-[0.95em] translate-y-[0.12em] bg-[var(--color-muted)] ml-[0.06em] align-baseline caret-blink' />
       </span>
-      {/* Inline visually-hidden styles guard against a flash of the full phrase
-       * before the external stylesheet has applied (e.g. Vite dev serves CSS
-       * as a JS module, so .sr-only isn't active until JS evaluates). */}
-      <span className='sr-only' style={visuallyHidden}>
+      {/* Static fallback — only visible under prefers-reduced-motion. Not
+       * aria-hidden so screen readers pick it up directly when shown. */}
+      <span className='hidden motion-reduce:inline'>{fullPhrase}</span>
+      {/* SR-only mirror of the truthful phrase for screen readers while the
+       * animated span (which mutates through misspellings) is the visible one.
+       * Hidden under reduced motion to avoid double-announcing alongside the
+       * static span above. Inline visually-hidden styles guard against a flash
+       * before the external stylesheet has applied (e.g. Vite dev). */}
+      <span className='sr-only motion-reduce:hidden' style={visuallyHidden}>
         {fullPhrase}
       </span>
     </span>

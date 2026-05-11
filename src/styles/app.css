@@ -173,11 +173,6 @@ html {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
-  .caret-blink {
-    animation: caret-blink 1s steps(1) infinite !important;
-    animation-duration: 1s !important;
-    animation-iteration-count: infinite !important;
-  }
   .fade-up {
     animation: none;
     opacity: 1;
