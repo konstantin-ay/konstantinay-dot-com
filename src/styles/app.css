@@ -44,18 +44,20 @@
   --color-focus: oklch(45% 0.18 55);
 }
 
-:root[data-theme="dark"] {
-  --color-bg: oklch(13% 0.014 60);
-  --color-fg: oklch(96% 0.012 75);
-  --color-muted: oklch(72% 0.018 60);
-  --color-link: oklch(82% 0.14 55);
-  --color-link-hover: oklch(92% 0.1 55);
-  --color-rule: oklch(34% 0.022 60);
-  --color-grid: oklch(98% 0.02 75 / 0.06);
-  --color-grid-strong: oklch(100% 0 0 / 0.20);
-  --color-selection-bg: oklch(72% 0.16 55);
-  --color-selection-fg: oklch(15% 0.02 60);
-  --color-focus: oklch(82% 0.14 55);
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: oklch(13% 0.014 60);
+    --color-fg: oklch(96% 0.012 75);
+    --color-muted: oklch(72% 0.018 60);
+    --color-link: oklch(82% 0.14 55);
+    --color-link-hover: oklch(92% 0.1 55);
+    --color-rule: oklch(34% 0.022 60);
+    --color-grid: oklch(98% 0.02 75 / 0.06);
+    --color-grid-strong: oklch(100% 0 0 / 0.20);
+    --color-selection-bg: oklch(72% 0.16 55);
+    --color-selection-fg: oklch(15% 0.02 60);
+    --color-focus: oklch(82% 0.14 55);
+  }
 }
 
 @theme inline {
