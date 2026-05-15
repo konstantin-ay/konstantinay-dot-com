@@ -17,6 +17,11 @@ export default defineConfig({
         crawlLinks: true,
         autoSubfolderIndex: true,
         failOnError: true,
+        // crawlLinks follows every <a href>, including the link to the CV.
+        // Prerendering a binary asset decodes it as a UTF-8 string and writes
+        // it back, corrupting the PDF (every non-UTF-8 byte becomes U+FFFD).
+        // Only prerender real HTML routes — never paths with a file extension.
+        filter: ({ path }) => !/\.[a-z0-9]+$/i.test(path),
       },
     }),
     viteReact(),
