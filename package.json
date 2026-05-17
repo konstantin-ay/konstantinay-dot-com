@@ -14,7 +14,8 @@
     "start": "node .output/server/index.mjs",
     "check": "biome check .",
     "format": "biome format --write .",
-    "cv": "rendercv render cv.yaml && cp rendercv_output/Konstantin_Ay_CV.pdf public/konstantin-ay-cv.pdf"
+    "cv": "rendercv render cv.yaml && cp rendercv_output/Konstantin_Ay_CV.pdf public/konstantin-ay-cv.pdf",
+    "cv:sv": "rendercv render cv-sv.yaml && cp rendercv_output/Konstantin_Ay_CV.pdf public/konstantin-ay-cv-sv.pdf"
   },
   "dependencies": {
     "@tanstack/react-router": "^1.169.2",
