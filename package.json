@@ -13,7 +13,8 @@
     "preview": "vite preview",
     "start": "node .output/server/index.mjs",
     "check": "biome check .",
-    "format": "biome format --write ."
+    "format": "biome format --write .",
+    "cv": "rendercv render cv-revised.yaml && cp rendercv_output/Konstantin_Ay_CV.pdf public/konstantin-ay-cv.pdf"
   },
   "dependencies": {
     "@tanstack/react-router": "^1.169.2",
