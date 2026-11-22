@@ -1,0 +1,189 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Eudoxus Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/EudoxusSans-Regular.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Eudoxus Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/fonts/EudoxusSans-Medium.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Eudoxus Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/EudoxusSans-Bold.woff2") format("woff2");
+}
+
+@theme {
+  --font-sans: "Eudoxus Sans", ui-sans-serif, system-ui, sans-serif;
+}
+
+:root {
+  color-scheme: light dark;
+
+  --color-bg: oklch(95.5% 0.022 78);
+  --color-fg: oklch(22% 0.018 55);
+  --color-muted: oklch(50% 0.018 60);
+  --color-link: oklch(45% 0.18 55);
+  --color-link-hover: oklch(38% 0.2 50);
+  --color-rule: oklch(86% 0.022 78);
+  --color-grid: oklch(25% 0.04 60 / 0.07);
+  --color-grid-strong: oklch(0% 0 0 / 0.20);
+  --color-selection-bg: oklch(80% 0.14 55);
+  --color-selection-fg: oklch(15% 0.02 60);
+  --color-focus: oklch(45% 0.18 55);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: oklch(13% 0.014 60);
+    --color-fg: oklch(96% 0.012 75);
+    --color-muted: oklch(72% 0.018 60);
+    --color-link: oklch(82% 0.14 55);
+    --color-link-hover: oklch(92% 0.1 55);
+    --color-rule: oklch(34% 0.022 60);
+    --color-grid: oklch(98% 0.02 75 / 0.06);
+    --color-grid-strong: oklch(100% 0 0 / 0.20);
+    --color-selection-bg: oklch(72% 0.16 55);
+    --color-selection-fg: oklch(15% 0.02 60);
+    --color-focus: oklch(82% 0.14 55);
+  }
+}
+
+@theme inline {
+  --color-bg: var(--color-bg);
+  --color-fg: var(--color-fg);
+  --color-muted: var(--color-muted);
+  --color-link: var(--color-link);
+  --color-link-hover: var(--color-link-hover);
+  --color-rule: var(--color-rule);
+  --color-grid: var(--color-grid);
+  --color-grid-strong: var(--color-grid-strong);
+  --color-focus: var(--color-focus);
+}
+
+html {
+  background: var(--color-bg);
+  color: var(--color-fg);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  background-image: radial-gradient(circle, var(--color-grid) 1px, transparent 1px);
+  background-size: 24px 24px;
+  background-position: 0 0;
+  transition:
+    background-color 280ms ease,
+    color 280ms ease;
+}
+
+#cursor-spotlight {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0;
+  background-image: radial-gradient(circle, var(--color-grid-strong) 1px, transparent 1px);
+  background-size: 24px 24px;
+  background-position: 0 0;
+  transition: opacity 240ms ease;
+  will-change: mask-image;
+  -webkit-mask-image: radial-gradient(
+    circle 150px at var(--mx, 50%) var(--my, 50%),
+    black 0%,
+    rgba(0, 0, 0, 0.6) 60%,
+    transparent 100%
+  );
+  mask-image: radial-gradient(
+    circle 150px at var(--mx, 50%) var(--my, 50%),
+    black 0%,
+    rgba(0, 0, 0, 0.6) 60%,
+    transparent 100%
+  );
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+
+::selection {
+  background: var(--color-selection-bg);
+  color: var(--color-selection-fg);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+@keyframes caret-blink {
+  0%,
+  50% {
+    opacity: 1;
+  }
+  50.01%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.caret-blink {
+  animation: caret-blink 1s steps(1) infinite;
+}
+
+/*
+ * Entrance animations.
+ * The element's REST state is fully visible, so no-JS / pre-paint / crawler
+ * snapshots all show readable text. The keyframe runs once on load and only
+ * adds the "from invisible" intro — it never holds an invisible final state.
+ */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-up {
+  animation: fade-up 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+.fade-up-0 {
+  animation-delay: 50ms;
+}
+.fade-up-1 {
+  animation-delay: 130ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .fade-up {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce), (hover: none), (pointer: coarse) {
+  #cursor-spotlight {
+    display: none;
+  }
+}

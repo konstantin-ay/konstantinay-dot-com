@@ -1,0 +1,4 @@
+# pnpm 11 fails install on any unreviewed dependency build script.
+# core-js (via posthog-js) only prints a funding banner on postinstall — deny it.
+allowBuilds:
+  core-js: false
