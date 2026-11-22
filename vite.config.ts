@@ -12,6 +12,9 @@ export default defineConfig({
     tailwindcss(),
     tanstackStart({
       srcDirectory: 'src',
+      // Emit /404 as a flat 404.html (not 404/index.html) — GitHub Pages serves
+      // that file for any unknown path.
+      pages: [{ path: '/404', prerender: { enabled: true, autoSubfolderIndex: false } }],
       prerender: {
         enabled: true,
         crawlLinks: true,
