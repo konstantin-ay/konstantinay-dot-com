@@ -1,3 +1,4 @@
+import { usePostHog } from '@posthog/react'
 import { Fragment } from 'react'
 import { type ContactKind, content } from '../lib/content'
 
@@ -16,6 +17,7 @@ const EXTERNAL: Record<ContactKind, boolean> = {
 }
 
 export function ContactInline() {
+  const posthog = usePostHog()
   const { intro, parts, separators } = content.contactSentence
 
   return (
@@ -31,6 +33,15 @@ export function ContactInline() {
             {sep}
             <a
               href={url}
+              onClick={() => {
+                posthog.logger.info(
+                  isCv ? 'portfolio resume download started' : 'portfolio contact link selected',
+                  { contact_method: part.kind },
+                )
+                posthog.capture('contact_link_clicked', {
+                  contact_method: part.kind,
+                })
+              }}
               {...(isCv ? { download: content.cv.downloadAs } : {})}
               {...(isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
               className='text-link underline decoration-rule decoration-1 underline-offset-4 transition-colors duration-150 hover:text-link-hover hover:decoration-current'
