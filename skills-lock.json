@@ -7,12 +7,6 @@
       "skillPath": "skills/agent-browser/SKILL.md",
       "computedHash": "80161e6836b3b40f4e83730a290deb40ac14d877d38c97ad5f6d71be37ce74c3"
     },
-    "cv-builder": {
-      "source": "claude-office-skills/skills",
-      "sourceType": "github",
-      "skillPath": "cv-builder/SKILL.md",
-      "computedHash": "e5de7de7841c4c5d51985f55e56faa7e9df1566bf6288200c1944a56ac017786"
-    },
     "find-skills": {
       "source": "vercel-labs/skills",
       "sourceType": "github",
